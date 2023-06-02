@@ -37,9 +37,16 @@ public class CardResource {
         return new ResponseEntity<>(newCard, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Card> updateCard(@RequestBody Card card) {
-        Card newCard = cardService.addCard(card);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Card> updateCard(@RequestBody Card card, @PathVariable("id") Long id) {
+//        Card newCard = cardService.updateCard(card);
+//        return new ResponseEntity<>(newCard, HttpStatus.OK);
+        Card newCard = cardService.findCardById(id);
+        newCard.setColor(card.getColor());
+        newCard.setText(card.getText());
+        newCard.setStatus(card.getStatus());
+        newCard.setTags(card.getTags());
+        Card updatedCard = cardService.addCard(newCard);
         return new ResponseEntity<>(newCard, HttpStatus.OK);
     }
 

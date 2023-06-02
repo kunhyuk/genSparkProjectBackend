@@ -3,12 +3,14 @@ package com.crudproejct.gensparkproject.service;
 import com.crudproejct.gensparkproject.exception.UserNotFoundException;
 import com.crudproejct.gensparkproject.model.Card;
 import com.crudproejct.gensparkproject.repository.CardRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.List;
 import java.util.UUID;
 @Service
+@Transactional
 public class CardService {
     private final CardRepo cardRepo;
     @Autowired
